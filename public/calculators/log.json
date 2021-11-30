@@ -1,0 +1,13 @@
+[
+    {
+        "name": "number",
+        "values": ["n"],
+        "min": 0.000000001
+    },
+    {
+        "name": "base",
+        "values": ["a"],
+        "min": 0.000000001,
+        "exceptions": [1]
+    }
+]

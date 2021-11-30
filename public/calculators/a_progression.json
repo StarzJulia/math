@@ -1,0 +1,16 @@
+[
+    {
+        "name": "a1",
+        "values": ["a1"]
+    },
+    {
+        "name": "d",
+        "values": ["d"]
+    },
+    {
+        "name": "n",
+        "values": ["n"],
+        "min": 0,
+        "inputmode": "numeric"
+    }
+]
