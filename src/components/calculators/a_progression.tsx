@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import CalculatorResultLink from '../CalculatorResultLink';
 import CalculatorFormula from '../CalculatorFormula';
 import {Context} from '../../store/store';
+import {roundNum} from '../../scripts/calculations';
 
 export default function a_progression() {
 	const {state} = useContext(Context);
@@ -14,11 +15,8 @@ export default function a_progression() {
 
 		let an = a1 + d * (n - 1);
         let s = n * (a1 + an) / 2;
-
-        s = parseFloat(((s * 100) / 100).toFixed(2));
-        an = parseFloat(((an * 100) / 100).toFixed(2));
 		
-		return {n, d, a1, an, 'formularesult': s, 'memberresult': an};
+		return {n, d, a1, an, 'formularesult': roundNum(s), 'memberresult': roundNum(an)};
 	}
 
 	return (

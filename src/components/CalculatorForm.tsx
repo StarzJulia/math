@@ -94,6 +94,8 @@ export default function CalculatorForm() {
 			<div id="calc_form-content">
 				{state.fields.map((field: Field, key: number) => {
 					switch(field.type) {
+						case 'matrix':
+							return <></>;
 						case 'select':
 							return <FormSelect 
 										field={field} 

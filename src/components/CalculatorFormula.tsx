@@ -18,19 +18,22 @@ export default function CalculatorFormula({denotation, formulas}: FormulaProps) 
       pattern = pattern[part];
     }
 
-    if (denotation[name + 'result']) {
-      pattern.push(`= {${name}result}`);
-    }
-
     return pattern;
   }
 
   return (
     <>
       {Object.keys(formulas).map((f) => {
-        return <div><div className="formula-table" key={f}>
-          <CalculatorFormulaRender denotation={denotation} formula={getFormula(f)} i={0} />
-        </div></div>
+        return <div key={f}>
+            <div className="formula-table" key={f}>
+              <CalculatorFormulaRender denotation={denotation} formula={getFormula(f)} i={0} />
+              {denotation[f + 'result'] &&
+                <div className="formula-answer">
+                  = {denotation[f + 'result']}
+                </div>
+              }
+            </div>
+        </div>
       })}
     </>
   );

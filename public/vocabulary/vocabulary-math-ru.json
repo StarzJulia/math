@@ -902,7 +902,14 @@
     },
 
     "factorial": {
-        "formula": "{&formula.factorial_main}"
+        "formulas": [
+            {
+                "formula": "{&formula.factorial_main}"
+            },
+            {
+                "n": "n"
+            }
+        ]
     },
 
     "sqrt_pow": {

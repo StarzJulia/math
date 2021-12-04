@@ -23,7 +23,9 @@ export interface Field {
     notRequired?: boolean;
     min?: number;
     max?: number;
-    exceptions?: string[] | number[]
+    exceptions?: string[] | number[];
+    cols?: number;
+    rows?: number;
 }
 
 export interface Fields {
@@ -45,7 +47,7 @@ export interface FormFieldProps {
 export interface GlobalStateInterface {
     lang: string;
     type: string;
-    vocabulary: {[key: string]: any};
+    vocabulary: {[key: string]: [] | {} | string};
     formulas: {[key: string]: any};
     fields: [];
     labels: {[key: string]: string};

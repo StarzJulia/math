@@ -1,0 +1,8 @@
+[
+    {
+        "name": "number",
+        "values": [""],
+        "inputmode": "numeric",
+        "min": 0
+    }
+]

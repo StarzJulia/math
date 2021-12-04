@@ -20,7 +20,6 @@ export default function CalculatorFormulaRender({i, formula, denotation}: Calcul
                 return <div 
                         key={index} 
                         dangerouslySetInnerHTML={{ __html: setFormulaVariables(el) }}
-                        className={el.indexOf('result') > -1 ? 'formula-answer': ''}
                       ></div>
               default:
                 return <div key={index} className={i % 2 == 0 ? 'formula-inner_table' : ''}>

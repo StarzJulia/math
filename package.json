@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "webpack serve --open",
     "start": "webpack --watch",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
     "fork-ts-checker-webpack-plugin": "^6.4.0",
+    "jest": "^27.4.3",
     "path": "^0.12.7",
     "source-map-loader": "^3.0.0",
     "ts-loader": "^9.2.6",

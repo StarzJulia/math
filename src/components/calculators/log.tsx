@@ -2,6 +2,7 @@ import React, {useContext} from 'react';
 import CalculatorResultLink from '../CalculatorResultLink';
 import CalculatorFormula from '../CalculatorFormula';
 import {Context} from '../../store/store';
+import {logF, roundNum} from '../../scripts/calculations';
 
 export default function log() {
 	const {state} = useContext(Context);
@@ -11,8 +12,7 @@ export default function log() {
 		const n = parseFloat(values['number']);
 		const a = parseFloat(values['base']);
 
-		let b = Math.log(n) / Math.log(a);
-        b = parseFloat(((b * 100) / 100).toFixed(2));
+		let b = roundNum(logF(n, a));
 
         return {a, n, b}
 	}
