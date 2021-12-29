@@ -1,20 +1,17 @@
 import React, {useContext} from 'react';
-import CalculatorResultLink from '../CalculatorResultLink';
-import CalculatorFormula from '../CalculatorFormula';
-import {Context} from '../../store/store';
-import {logF, roundNum} from '../../scripts/calculations';
+import CalculatorResultLink from '../../CalculatorResultLink';
+import CalculatorFormula from '../../CalculatorFormula';
+import {factorialF} from '../../../scripts/calculations';
+import {Context} from '../../../store/store';
 
-export default function log() {
+export default function Factorial() {
 	const {state} = useContext(Context);
 	const {values} = state;
 
 	const makeCalculation = () => {
 		const n = parseFloat(values['number']);
-		const a = parseFloat(values['base']);
 
-		let b = roundNum(logF(n, a));
-
-        return {a, n, b}
+        return {n, 'formularesult': factorialF(n)};
 	}
 
 	return (

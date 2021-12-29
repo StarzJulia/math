@@ -20,5 +20,5 @@ export function logF(n: number, base: number): number {
 }
 
 export function roundNum(n: number, q: number = 2): number {
-    return parseFloat(((n * Math.pow(10, q)) /  Math.pow(10, q)).toFixed(q));
+    return Math.round(n * Math.pow(10, q)) / Math.pow(10, q);
 }

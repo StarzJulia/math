@@ -5,18 +5,19 @@ import CalculatorResult from './CalculatorResult';
 import CalculatorFormula from './CalculatorFormula';
 import CalculatorForm from './CalculatorForm';
 
-export default function CalculatorContainer({calcType, lang} : CalcProps) {
+export default function CalculatorContainer({calcName, calcType, lang} : CalcProps) {
 	const {state, dispatch} = useContext(Context);
 	const [isVocabularyReady, setVocabularyFlag] = useState(false);
+	const [isFormulasReady, setFormulasFlag] = useState(false);
 	const [isFieldsReady, setFieldsFlag] = useState(false);
-	const [isLabelsReady, setLabelsFlag] = useState(false);
-	const [isFormulas, setFormulasFlag] = useState(false);
+	const [calcFormulas, setCalcFormulas] = useState([]);
 
 	useEffect(() => {
 		dispatch({type: 'SET_TYPE', data: calcType});
+		dispatch({type: 'SET_NAME', data: calcName});
 		dispatch({type: 'SET_LANG', data: lang});
 		getVocabulary();
-		getLabels();
+		getFormulas();
 		getFields();
 	}, []);
 
@@ -26,24 +27,24 @@ export default function CalculatorContainer({calcType, lang} : CalcProps) {
 				return response.json();
 			})
 			.then((result) => {
-				const formulas = result[calcType] ? (result[calcType].formulas ? result[calcType].formulas : {}) : {null};
-				dispatch({type: 'SET_VOCABULARY', data: {vocabulary: result, formulas: formulas}});
+				const formulas = result[calcName] ? (result[calcName].formulas ? result[calcName].formulas : []) : [];
+				dispatch({type: 'SET_VOCABULARY', data: result});
 				setVocabularyFlag(true);
-				setFormulasFlag(!!formulas.length);
+				setCalcFormulas(formulas);
 			})
 			.catch((error) => {
 				dispatch({type: 'SET_ERROR', data: {error: error}});
 			});
 	}
 
-	const getLabels = () => {
-		fetch(`../vocabulary/labels-${lang}.json`)
+	const getFormulas = () => {
+		fetch('../vocabulary/formulas.json')
 			.then((response) => {
 				return response.json();
 			})
 			.then((result) => {
-				dispatch({type: 'SET_LABELS', data: {labels: result}});
-				setLabelsFlag(true);
+				dispatch({type: 'SET_FORMULAS', data: result});
+				setFormulasFlag(true);
 			})
 			.catch((error) => {
 				dispatch({type: 'SET_ERROR', data: {error: error}});
@@ -51,7 +52,7 @@ export default function CalculatorContainer({calcType, lang} : CalcProps) {
 	}
 
 	const getFields = () => {
-		fetch('../calculators/' + calcType + '.json')
+		fetch(`../calculators/${calcName}.json`)
 			.then((response) => {
 				return response.json();
 			})
@@ -66,17 +67,15 @@ export default function CalculatorContainer({calcType, lang} : CalcProps) {
 
 	return (
 		<>
-			{isFormulas && isVocabularyReady && 
-				<>
-					<div id="formula" className="formula-result">
-						<CalculatorFormula formulas={state.formulas[0]} denotation={state.formulas[1]} />
-					</div>
-				</>
+			{isFormulasReady && isVocabularyReady && calcFormulas.length > 0 &&
+				<div className="formula-result">
+					<CalculatorFormula />
+				</div>
 			}
-			{isLabelsReady && isFieldsReady && isVocabularyReady &&
+			{isFieldsReady && isVocabularyReady && isFormulasReady &&
 				<CalculatorForm />
 			}
-			{state.startCalculationFlag && isVocabularyReady &&
+			{state.startCalculationFlag && isVocabularyReady && isFormulasReady &&
 				<CalculatorResult />
 			}
 		</>

@@ -1,0 +1,13 @@
+[
+    {
+        "type": "matrix",
+        "name": "matrix",
+        "cols": 3,
+        "rows": 3,
+        "squared": true,
+        "buttons": [
+            "add",
+            "remove"
+        ]
+    }
+]

@@ -1,25 +1,58 @@
-import {Field} from '../interfaces/interfaces';
 import React, {useContext, useState, useEffect} from 'react';
+import {Field} from '../interfaces/interfaces';
 import {Context} from '../store/store';
 import FormInput from './fields/FormInput';
 import FormSelect from './fields/FormSelect';
+import FormTable from './fields/FormTable';
+import FormButtonsContainer from './fields/FormButtonsContainer';
 
 export default function CalculatorForm() {
 	const {state, dispatch} = useContext(Context);
 	const [error, setError] = useState(false);
 	const [values, setValues] = useState(() => {
-        var search = location.search.replace('?', '').split('&').reduce<Record<string, string>>((arr, item: string) => {
+        var search = location.search.replace('?', '').split('&').reduce<string | {}>((defaults: [], item: string) => {
 			const [name, val] = item.split('=');
-			arr[name] = val;
-			return arr;
+
+			if (val && val.indexOf('%20') > -1) {
+				let rows = val.split('%20');
+				let colLength;
+				let rowLength = rows.length;
+				let defaultValues = [];
+
+				for (var cells of rows) {
+					var cellsArr = cells.split(',');
+					defaultValues.push(cellsArr);
+					colLength = cellsArr.length;
+				}
+
+				defaults[name] = {
+					rows: rowLength,
+					cols: colLength,
+					values: defaultValues
+				};
+			} else {
+				defaults[name] = val;
+			}
+
+			return defaults;
 		}, {});
 
-		return state.fields.reduce<Record<string, string>>((obj, field: Field) => {
+		return state.fields.reduce<string | {}>((initialData, field: Field) => {
 			const id = field.id || field.name;
-			obj[id] = search[id] || field.default || '';
 
-			return obj;
-		}, {})
+			if (field.type == 'matrix') {
+				let value: {} = search[id] || {
+					cols: field.cols,
+					rows: field.rows,
+					values: Array.apply(0, Array(field.rows)).map(() => Array.apply(0, Array(field.cols)).map(() => ''))
+				};
+				initialData[id] = {...value, squared: field.squared || false}
+			} else {
+				initialData[id] = search[id] || field.default || '';
+			}
+			
+			return initialData;
+		}, {});
     });
 
 	console.log(state);
@@ -30,8 +63,8 @@ export default function CalculatorForm() {
 		}
 	}, [values]);
 
-	const buildLabel = (label: string, values: string[]) => {
-		return label.replace(/{}/gi, values.join(", "));
+	const buildLabel = (name: string, values: string[]) => {
+		return state.vocabulary.labels[name].replace(/{}/gi, values.join(", "));
 	}
 
 	const validateNumber = (field: Field, v: string): boolean => {
@@ -50,15 +83,21 @@ export default function CalculatorForm() {
 	const validate = () => {
 		const valid = state.fields.reduce((isValid: boolean, field: Field): boolean => {
 			const v = values[field.id || field.name];
-			if (field.notRequired && v === "") {
+			if (field.type == 'matrix' && v.rows && v.cols) {
+				for (let i = 0; i < v.rows; i++) {
+					for (let j = 0; j < v.cols; j++) {
+						isValid = isValid && validateNumber(field, v.values[i][j]);
+					}
+				}
+			} else if (field.notRequired && v === "") {
 				isValid = isValid && true;
 			} else if (field.type == 'select' || field.inputType == 'string') {
 				isValid = isValid && validateString(v);
 			} else {
 				isValid = isValid && validateNumber(field, v);
 			}
+			
 			return isValid;
-
 		}, true);
 		
 		setError(!valid);
@@ -80,9 +119,16 @@ export default function CalculatorForm() {
 		showResult();
 	}
 
-	const changeData = (e: React.ChangeEvent<HTMLInputElement>, id: string) => {
+	const changeData = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>, id: string) => {
 		const newValues = { ...values };
 		newValues[id] = e.target.value;
+
+		setValues(newValues);
+	}
+
+	const changeTableData = (value: {}, id: string) => {
+		const newValues = { ...values };
+		newValues[id] = value;
 
 		setValues(newValues);
 	}
@@ -90,23 +136,35 @@ export default function CalculatorForm() {
 	return (
 		<>
 		<form id="calc_form" onSubmit={onSubmit}>
-			<input type="hidden" id="type" value={state.type} />
 			<div id="calc_form-content">
 				{state.fields.map((field: Field, key: number) => {
 					switch(field.type) {
 						case 'matrix':
-							return <></>;
+							return <>
+								<FormTable
+									field={field} 
+									rows={3}
+									cols={3}
+									key={key} 
+									options={values[field.id || field.name]}
+									fieldChanged={changeTableData}
+								/>
+								<FormButtonsContainer 
+									field={field} 
+									options={values[field.id || field.name]}
+								/>
+							</>;
 						case 'select':
 							return <FormSelect 
 										field={field} 
-										label={buildLabel(state.labels[field.name], field.values || [])} 
-										key={key} 
+										label={buildLabel(field.name, field.values || [])} 
+										key={key}  
 										fieldChanged={changeData}
 									/>
 						default:
 							return <FormInput 
 										field={field} 
-										label={buildLabel(state.labels[field.name], field.values || [])} 
+										label={buildLabel(field.name, field.values || [])} 
 										key={key} 
 										value={values[field.id || field.name]}
 										fieldChanged={changeData}

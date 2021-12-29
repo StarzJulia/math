@@ -5,10 +5,10 @@ import {GlobalStateInterface} from '../interfaces/interfaces';
 const initialState: GlobalStateInterface = {
     lang: 'ru',
     type: '',
+    name: '',
     vocabulary: {},
-    formulas: {},
+    formulas: [],
     fields: [],
-    labels: {},
     startCalculationFlag: false,
     values: {}
 }

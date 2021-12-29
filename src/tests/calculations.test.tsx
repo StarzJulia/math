@@ -1,6 +1,6 @@
 import {gcdF, lcmF, logF, roundNum, factorialF} from '../scripts/calculations';
 
-test('test gcd(150, 180) = 30', () => {
+test('GCD of 150 and 180 should be 30', () => {
     expect(gcdF(150, 180)).toBe(30);
 });
 

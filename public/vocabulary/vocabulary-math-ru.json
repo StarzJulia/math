@@ -3,6 +3,82 @@
     "loading": "Загрузка...",
     "link": "Ваша персональная ссылка: ",
 
+    "labels": {
+        "a1": "Первый член прогрессии {}",
+        "d": "Разность прогрессии {}",
+        "q": "Знаменатель прогрессии {}",
+        "n": "Номер последнего члена {}",
+    
+    
+        "coord": "{}",
+        "radius": "Радиус {}",
+        "angle": "Угол {}",
+        "square": "Площадь {}",
+        "side": "Сторона {}",
+        "width": "Ширина {}",
+        "height": "Высота {}",
+        "length": "Длина {}",
+        "volume": "Объём шара {}",
+        "perimeter": "Периметр",
+        "base": "Основание {}",
+        "diagonal": "Диагональ {}",
+        "radius_semiaxis": "Радиус(полуось) {}",
+    
+        "square_base": "Площадь {} основания (S<sub>{}</sub>)",
+        "radius_n": "Радиус {} (r<sub>{}</sub>)",
+        "diagonal_n": "Диагональ {} (d{})",
+    
+        "radius_small": "Радиус малой окружности {}",
+        "radius_big": "Радиус большой окружности {}",
+        "radius_inner": "Радиус вписанной окружности {}",
+        "radius_outer": "Радиус описанной окружности {}",
+    
+        "quantity_angles": "Количество углов {}",
+        "quantity_sides": "Количество сторон многоугольника {}",
+        "axis_coord": "Координата по оси {}",
+        "polar_radius": "Полярный радиус ({})",
+        "polar_angle": "Полярный угол ({})",
+        "select_side_types": "Стороны являются",
+        "select_l": "",
+        "quantity_parts": "Число частей",
+        "inner_length": "Длина внутренней дуги {}",
+        "outer_length": "Длина внешней дуги {}",
+        "distance": "Расстояние между дугами {}",
+    
+        "number_first": "Начальное число",
+        "number_last": "Конечное число",
+        "quantity_generator": "Количество выпаданий",
+    
+        "num": "n",
+        "value": "Значение ",
+        "units": "Единицы измерения",
+    
+        "number": "Число {}",
+        "power": "Степень / корень",
+    
+        "module": "Модуль",
+        "matrix": "Матрица {}",
+        "symmetrix_matrix": "Симметричная матрица:",
+        "skew_symmetric_matrix": "Кососимметричная матрица:",
+        "echelon_form": "Ступенчатая матрица:",
+        "row_echelon_form": "Приведённая ступенчатая матрица:",
+        "min": "Минимальное значение",
+        "max": "Максимальное значение",
+        "choose_max_col": "Метод {} с выбором максимума в столбце:",
+        "choose_max_matrix": "Метод {} с выбором максимума по всей матрице:",
+        "divisor": "Разделитель",
+        "numType": "Тип чисел",
+        "types": [
+            "Целые",
+            "Дробные"
+        ],
+        "method": "Метод",
+        "methods": [
+            "Гауса",
+            "Барейса" 
+        ]
+    },
+
     "btns": {
         "calc": "Рассчитать",
         "copy": "Скопировать",
@@ -10,417 +86,100 @@
         "add": "+ Добавить",
         "remove": "- Удалить",
         "addCol": "+ Добавить колонку",
-        "addRow": "+ Добавить строку"
+        "addRow": "+ Добавить строку",
+        "copy_matrix": "Скопировать матрицу"
     },
 
     "errors": {
         "sides": "{} >= {} + {}",
-        "rectangle_side": "{} >= {} / 2"
+        "rectangle_side": "{} >= {} / 2",
+        "degenerate_matrix": "Матрица вырожденная",
+        "no_inverse_matrix": "Обратной матрицы не существует",
+        "modular_inverse": "Обратного числа не существует",
+        "multiply_matrices": "Количество столбцов матрицы А не совпадает с количеством строк матрицы B",
+        "diagonal_zero": "Диагональный элемент равен нулю",
+        "system": {
+            "no_solution": "Система уравнений не имеет решений",
+            "inf": "Система уравнений имеет бесконечное число решений"
+        },
+        "expression": "Некорректное выражение",
+        "proportion": "Необходимо задать 3 числа"
     },
 
-    "formula": {
-        "nsquare": [
-            "S =",
-            [         
-                "{n} * {a}<sup>2</sup>",   
-                ["4 * tg(",
-                [
-                    "360<sup>&deg;</sup>", 
-                    "2 * {n}"
-                ],
-                ")"]
-            ]
-        ],
-        "rhombus_square1": ["S = {a} * {h}"],
-        "rhombus_square2": ["S = {a}<sup>2</sup> * sin({an})"],
-        "rhombus_square3": [
-            "S = ", 
-            [
-                "{d1} * {d2}",
-                "2"
-            ]
-        ],
-        "heron": ["S = &radic; {p} * ({p} - {a}) * ({p} - {b}) * ({p} - {c})"],
-        "p": [
-            "p =",
-            [
-                "{a} + {b} + {c}",
-                "2"
-            ]
-        ],
-        "perimeter": ["P = {a} + {b} + {c}"],
-        "triangle_side_by_coord": ["{i} = &radic;({x1} - {x2})<sup>2</sup> + ({y1} - {y2})<sup>2</sup> + ({z1} - {z2})<sup>2</sup>"],
-
-        "median_2": [
-            "AM<sup>2</sup> =",
-            [
-                "{a}<sup>2</sup>",
-                "2"
-            ],
-            "+",
-            [
-                "{b}<sup>2</sup>",
-                "2"
-            ],
-            "-",
-            [
-                "{c}<sup>2</sup>",
-                "4"
-            ]
-        ],
-        "median": [
-            "AM"
-        ],
-
-        "bisector": [
-            "L =",
-            [
-                "&radic; {a} * {b} * ({a} + {b} + {c}) * ({a} + {b} - {c})",
-                "{a} + {b}"
-            ]
-        ],
-
-        "triangle_height": [
-            "h<sub>c</sub> =",
-            [
-                "2 * {s}",
-                "{c}"
-            ]
-        ],
-
-        "cube_volume": ["V = {a}<sup>3</sup>"],
-        "cone_volume": [
-            "V = ",
-            ["1", "3"],
-            "π * {r}<sup>2</sup> * {h}"
-        ],
-        "prism_volume": ["V = {h} * {w} * {l}"],
-        "pyramid_volume": [
-            "V = ",
-            ["1", "3"],
-            "{S} * {h}"
-        ],
-        "frustum_volume": [
-            "V = ",
-            ["{h}", "3"],
-            "{S1} + {S2} + &radic; {S1} * {S2}"
-        ],
-        "cylinder_volume": ["V = π * {r}<sup>2</sup> * {h}"],
-        "sphere_volume": [
-            "V = ",
-            ["4", "3"],
-            "π * {r}<sup>3</sup>"
-        ],
-        "ellipsoid_volume": [
-            "V = ",
-            ["4", "3"],
-            "π * {r1} * {r2} * {r3}"
-        ],
-        "toroid_volume": ["V = 2 * π<sup>2</sup> * {r1} * {r2}<sup>2</sup>"],
-
-        "ellipsoid_square": ["S ≈ 4 * π * [",["{a}<sup>{p}</sup>*{b}<sup>{p}</sup> + {a}<sup>{p}</sup>*{c}<sup>{p}</sup> + {b}<sup>{p}</sup>*{c}<sup>{p}</sup>", "3"],"]<sup>1/{p}</sup>"],
-        "ellipsoid_square_p": ["p = 1.6075"],
-
-        "cone_square_lat": ["S<sub>lat</sub> = π * {r} * &radic;{r}<sup>2</sup> + {h}<sup>2</sup>"],
-        "cone_square": ["S = π * {r}<sup>2</sup> + {Sl}"],
-
-        "conoid_volume": [
-            "V = ",
-            ["1", "3"],
-            "π * ({r1}<sup>2</sup> + {r1} * {r2} + {r2}<sup>2</sup>) * {h}"
-        ],
-        "conoid_square_lat": ["S<sub>lat</sub> = π * ({r1} + {r2}) * &radic;({r1} - {r2})<sup>2</sup> + {h}<sup>2</sup>"],
-        "conoid_square": ["S = π * {r1}<sup>2</sup> + π * {r2}<sup>2</sup> + {Sl}"],
-
-        "polar_radius": ["r = &radic; {x}<sup>2</sup> + {y}<sup>2</sup>"],
-        "polar_angle": [
-            "α = arctg(",
-            ["{y}", "{x}"],
-            ") + π * {n}"
-        ],
-        "x_coord": ["X = {r} * cos({an})"],
-        "y_coord": ["Y = {r} * sin({an})"],
-
-        "cube_square": ["S = 6 * {a}<sup>2</sup>"],
-        "cube_incircle": ["r = ", ["{a}", "2"]],
-        "cube_circumcircle": ["r = {a} * ", ["&radic;3", "2"]],
-        "cube_circle": ["r = ", ["{a}", "&radic;2"]],
-
-        "factorial": ["n! = "],
-
-        "stirling": [
-            "n! = &radic; 2π{n}",
-            " (",
-            ["{n}", "e"],
-            ")<sup>{n}</sup> ",
-            "(1 + ",
-            ["1", "12{n}"],
-            " + ",
-            ["1", "288{n}<sup>2</sup>"],
-            " - ",
-            ["139", "51840{n}<sup>3</sup>"],
-            " + O({n}<sup>-4</sup>))",
-            "≈ &radic; 2π{n}",
-            " (",
-            ["{n}", "e"],
-            ")<sup>{n}</sup> "
-        ],
-        "stirling_condition": [
-            "&radic; 2π{n}",
-            " (",
-            ["{n}", "e"],
-            ")<sup>{n}</sup> < n! < ",
-            "&radic; 2π{n}",
-            " (",
-            ["{n}", "e"],
-            ")<sup>{n}</sup> e <sup>1/12{n}</sup>"
-        ],
-
-        "a_progression": [
-            "S<sub>{n}</sub> = ",
-            [
-                "({a1} + {an}) * {n}",
-                "2"
-            ]
-        ],
-        "a_progression_member": ["a<sub>{n}</sub> = {a1} + {d} * ({n} - 1)"],
-        "g_progression": [
-            "S<sub>{n}</sub> = ",
-            [
-                "{an}*{q} - {a1}",
-                "{q} - 1"
-            ]
-        ],
-        "g_progression_member": ["a<sub>{n}</sub> = {a1}*{q}<sup>{n} - 1</sup>"],
-
-        "lines": ["{a}x + {b}y + {c} = 0"],
-        "parallel": [
-            ["A<sub>1</sub>", "A<sub>2</sub>"],
-            " = ",
-            ["B<sub>1</sub>", "B<sub>2</sub>"],
-            " <> ",
-            ["C<sub>1</sub>", "C<sub>2</sub>"]
-        ],
-        "perpendicular": ["A<sub>1</sub>A<sub>2</sub> + B<sub>1</sub>B<sub>2</sub> = 0"],
-
-        "sphere_segment_volume": [
-            "V = π*{h}<sup>2</sup> ({r} -",
-            ["{h}", "3"],
-            ")"
-        ],
-        "sphere_segment_lateral_square": ["S<sub>lateral</sub> = 2π*{r}*{h}"],
-        "sphere_segment_base_square": ["S<sub>base</sub> = π*{h} (2*{r} - {h})"],
-        "sphere_segment_cone_square": ["S<sub>cone</sub> = π*{r} &radic; {r}<sup>2</sup> + {h}<sup>2</sup>"],
-
-        "sphere_sector_square": ["S = S<sub>lateral</sub> + S<sub>cone</sub>"],
-        "sphere_sector_volume": [
-            "V = ",
-            ["2", "3"],
-            "π*{r}<sup>2</sup>*{h}"
-        ],
-        "sphere_radius": ["R = <sup>3</sup>&radic;", ["3 * {v}", "4 * π"]],
-
-        "triangle_angle": [
-            "{angle} = arccos(",
-            ["{a}<sup>2</sup> + {b}<sup>2</sup> - {c}<sup>2</sup> ", "2*{a}*{b}"],
-            ")"
-        ],
-        "triangle_side_length": ["c = &radic;{a}<sup>2</sup> + {b}<sup>2</sup> - 2 * {a} * {b} * cos({a})"],
-        "right_triangle_c_length": ["c = &radic;{a}<sup>2</sup> + {b}<sup>2</sup>"],
-        "right_triangle_a_length": ["a = &radic;{c}<sup>2</sup> - {b}<sup>2</sup>"],
-        "triangle_circumcircle_radius": ["R =", ["{a} * {b} * {c}", "4 * {s}"]],
-        "triangle_incircle_radius": ["r =", ["s", "p"]],
-        "triangle_squares_ratio": [["S<sub></sub>", "S"]],
-        "side_by_two_angles": ["{s} = {c} * sin({a1}) / sin({a2})"],
-        "gamma": ["{g} = 180 - {a} - {b}"],
-
-        "nsquare_by_circle": [
-            "S = ",
-            ["{n} * {r}<sup>2</sup>", "2"],
-            "sin(",
-            ["360", "{n}"],
-            ")"
-        ],
-        "nsquare_circle": ["S<sub>окр</sub> = π * {r}<sup>2</sup>"],
-
-        "incircle_radius": [
-            "r<sub>i</sub> = ",
-            [
-                "{a}",
-                [
-                    "2 * tan(",
-                    ["π", "{n}"],
-                    ")"
-                ]
-            ]
-        ],
-        "circumcircle_radius": [
-            "r<sub>c</sub> = ",
-            [
-                "{a}",
-                [
-                    "2 * sin(",
-                    ["π", "{n}"],
-                    ")"
-                ]
-            ]
-        ],
-        "circle_division_angle": ["α = 360 / {q}"],
-
-        "nsquare_ratio": [["S<sub>окр</sub>", "S"]],
-
-        "log": ["log<sub>{a}</sub>{n} = {b}"],
-        "power": ["{a}<sup>{b}</sup> = {n}"],
-        "log_condition": ["{n} > 0, {a} > 0, {a} != 1"],
-
-        "quadrangle_square": [
-            "S = ", 
-            [
-                "{d1} * {d2}",
-                "2"
-            ],
-            "sin{a}"
-        ],
-
-        "polygon_side_q": [
-            "n = ",
-            [   "π", 
-                ["arccos(",
-                    ["{ri}", "{rc}"],
-                ")"]
-            ]
-        ],
-
-        "polygon_side": [
-            "a = ",
-            [   "2 * {rc}", 
-                ["sin(",
-                    ["π", "{n}"],
-                ")"]
-            ]
-        ],
-
-        "circle_length": ["L = 2 * π * {r}"],
-        "circle_sector": ["S = ",["{a} * {r}<sup>2</sup>", "2"]],
-        "circle_segment": ["S = ",["{r}<sup>2</sup> * ({a} - sin({a}))", "2"]],
-        "circle_chord": ["C = 2 * {r} * sin(", ["{a}", "2"], ")"],
-        "circle_radius": ["r = &radic;", ["{s}", "π"]],
-
-        "circle_part_deg": ["a = ", ["({l1} - {l2}) * 360", "2 * π * {d}"]],
-        "circle_part_radius": ["{r} = ", ["{l} * 360", "2 * π * {a}"]],
-        "circle_part_square": ["s = π * ", ["{a}", "360"], "* ({r2}<sup>2</sup> - {r1}<sup>2</sup>)"],
-
-        "segment_length": ["L = {a} * {r}"],
-        "segment_height": ["h = {r} * (1 - cos(", ["{a}", "2"], "))"],
-
-        "deg_to_rad": ["{a} = ", ["{ad}° * π", "180"]],
-
-        "rectangle_square": ["S = {a} * {b}"],
-        "trapeze_square": ["S = ", ["{a} + {b}", "2"], "* {h}"],
-        "trapeze_square_2": ["S = ", ["{d1} * {d2} * sin({a})", "2"]],
-
-        "cylinder_square": ["S<sub>base</sub> = π*{r}<sup>2</sup>"],
-        "cylinder_square_res": ["S = S<sub>lateral</sub> + 2 * S<sub>base</sub>"],
-
-        "half": [["1", "2"]],
-        "rad22": [["&radic;2", "2"]],
-        "rad32": [["&radic;3", "2"]],
-        "rad3": ["&radic;3"],
-        "rad2": ["&radic;2"],
-        "rad13": [["1", "&radic;3"]],
-        "rad23": [["2", "&radic;3"]],
-
-        "factorial_main": ["{n}! = 1 * 2 * ... * {n}"]
+    "ArithmeticProgression": {
+        "formulas": [
+            {
+                "members": ["{&list}", true],
+                "n_member": ["{&a_progression_member}"],
+                "formula": ["{&a_progression}"]
+            },
+            {
+                "n": "n", 
+                "d": "d",
+                "a1": "a<sub>1</sub>", 
+                "an": "a<sub>n</sub>"
+            }
+        ]
     },
 
-    "sin": {
-        "0": "0",
-        "30": "{&formula.half}",
-        "45": "{&formula.rad22}",
-        "60": "{&formula.rad32}",
-        "90": "1"
+    "GeometricProgression": {
+        "formulas": [
+            {
+                "member": ["{&g_progression_member}"],
+                "formula": ["{&g_progression}"]
+            },
+            {
+                "n": "n", 
+                "q": "q",
+                "a1": "a<sub>1</sub>", 
+                "an": "a<sub>n</sub>"
+            }
+        ]
     },
 
-    "cos": {
-        "0": "1",
-        "30": "{&formula.rad32}",
-        "45": "{&formula.rad22}",
-        "60": "{&formula.half}",
-        "90": "0"
+    "Factorial": {
+        "formulas": [
+            {
+                "formula": ["{&factorial_main}"]
+            },
+            {
+                "n": "n"
+            }
+        ]
     },
 
-    "tg": {
-        "0": "0",
-        "30": "{&formula.rad13}",
-        "45": "1",
-        "60": "{&formula.rad3}",
-        "90": "∞"
+    "Logarithm": {
+        "formulas": [
+            {
+                "formula": ["{&log}"],
+                "condition": ["{&log_condition}"],
+                "power": ["{&power}"]
+            },
+            {
+                "a": "a",
+                "n": "n",
+                "b": "b"
+            }
+        ]
     },
 
-    "ctg": {
-        "0": "∞",
-        "30": "{&formula.rad3}",
-        "45": "1",
-        "60": "{&formula.rad13}",
-        "90": "0"
+    "MatrixDeterminant": {
+        "formulas": [
+            {
+                "det": ["{&matrix_det}", true]
+            },
+            {}
+        ]
     },
-
-    "sec": {
-        "0": "1",
-        "30": "{&formula.rad23}",
-        "45": "{&formula.rad2}",
-        "60": "2",
-        "90": "∞"
-    },
-
-    "cosec": {
-        "0": "∞",
-        "30": "2",
-        "45": "{&formula.rad2}",
-        "60": "{&formula.rad23}",
-        "90": "1"
-    },
-
-    "versin": {},
-    "vercos": {},
-    "haversin": {},
-
-    "exsec": {
-        "90": "∞"
-    },
-
-    "excsc": {
-        "0": "∞"
-    },
-
-    "arcsin": {
-        "0": "0"
-    },
-
-    "arccos": {
-        "1": "0"
-    },
-
-    "arctg": {
-        "0": "0"
-    },
-
-    "arcctg": {},
-
-    "arcsec": {
-        "1": "0"
-    },
-
-    "arccosec": {},
 
     "nsquare": {
-        "formula": "{&formula.nsquare}",
+        "formula": "{&nsquare}",
         "angle": "&angle; <strong>{}<sup>&deg;</sup></strong>, tg({}<sup>&deg;</sup>) = {?tg}"
     }, 
 
     "nsquare_by_circle": {
-        "formula": "{&formula.nsquare_by_circle}",
-        "formula_circle": "{&formula.nsquare_circle}",
+        "formula": "{&nsquare_by_circle}",
+        "formula_circle": "{&nsquare_circle}",
         "angle": "&angle; <strong>{}<sup>&deg;</sup></strong>, sin({}<sup>&deg;</sup>) = {?sin}"
     },   
 
@@ -439,31 +198,31 @@
 
         "desc": [
             {
-                "formula": "{&formula.cube_volume}"
+                "formula": "{&cube_volume}"
             },
             {
-                "formula": "{&formula.cone_volume}"
+                "formula": "{&cone_volume}"
             },
             {
-                "formula": "{&formula.prism_volume}"
+                "formula": "{&prism_volume}"
             },
             {
-                "formula": "{&formula.pyramid_volume}"
+                "formula": "{&pyramid_volume}"
             },
             {
-                "formula": "{&formula.frustum_volume}"
+                "formula": "{&frustum_volume}"
             },
             {
-                "formula": "{&formula.cylinder_volume}"
+                "formula": "{&cylinder_volume}"
             },
             {
-                "formula": "{&formula.sphere_volume}"
+                "formula": "{&sphere_volume}"
             },
             {
-                "formula": "{&formula.ellipsoid_volume}"
+                "formula": "{&ellipsoid_volume}"
             },
             {
-                "formula": "{&formula.toroid_volume}"
+                "formula": "{&toroid_volume}"
             }
         ]
     },
@@ -478,13 +237,13 @@
 
         "desc": [
             {
-                "formula1": "{&formula.polar_radius}",
-                "formula2": "{&formula.polar_angle}"
+                "formula1": "{&polar_radius}",
+                "formula2": "{&polar_angle}"
             },
 
             {
-                "formula1": "{&formula.x_coord}",
-                "formula2": "{&formula.y_coord}"
+                "formula1": "{&x_coord}",
+                "formula2": "{&y_coord}"
             }
         ]
     },
@@ -493,63 +252,63 @@
         
 
         "heron": {
-            "formula": "{&formula.heron}",
-            "p": "{&formula.p}"
+            "formula": "{&heron}",
+            "p": "{&p}"
         },
 
         "median": {
-            "formula": "{&formula.median_2}",
-            "result":" {&formula.median}"
+            "formula": "{&median_2}",
+            "result":" {&median}"
         },
 
         "bisector": {
-            "formula": "{&formula.bisector}"
+            "formula": "{&bisector}"
         },
 
         "height": {
-            "formula": "{&formula.triangle_height}"
+            "formula": "{&triangle_height}"
         },
 
         "triangle_angles": {
-            "formula": "{&formula.triangle_angle}"
+            "formula": "{&triangle_angle}"
         },
 
         "triangle_vertices": {
-            "formula": "{&formula.triangle_side_by_coord}",
-            "p": "{&formula.p}",
-            "square": "{&formula.heron}",
-            "perimeter": "{&formula.perimeter}"
+            "formula": "{&triangle_side_by_coord}",
+            "p": "{&p}",
+            "square": "{&heron}",
+            "perimeter": "{&perimeter}"
         },
 
         "triangle_side_length": {
-            "formula": "{&formula.triangle_side_length}"
+            "formula": "{&triangle_side_length}"
         },
 
         "right_triangle_side": {
             "select": ["двумя катетами", "катетом и гипотенузой"],
-            "c": "{&formula.right_triangle_c_length}",
-           "a": "{&formula.right_triangle_a_length}"
+            "c": "{&right_triangle_c_length}",
+           "a": "{&right_triangle_a_length}"
         },
 
         "triangle_incircle": {
-            "radius": "{&formula.triangle_incircle_radius}",
-            "square": "{&formula.nsquare_circle}",
-            "squares_ratio": "{&formula.triangle_squares_ratio}"
+            "radius": "{&triangle_incircle_radius}",
+            "square": "{&nsquare_circle}",
+            "squares_ratio": "{&triangle_squares_ratio}"
         },
 
         "triangle_circumcircle": {
-            "radius": "{&formula.triangle_circumcircle_radius}",
-            "square": "{&formula.nsquare_circle}",
-            "squares_ratio": "{&formula.triangle_squares_ratio}"
+            "radius": "{&triangle_circumcircle_radius}",
+            "square": "{&nsquare_circle}",
+            "squares_ratio": "{&triangle_squares_ratio}"
         },
 
         "triangle_square_by_two_sides": {
-            "formula": "{&formula.trapeze_square_2}"
+            "formula": "{&trapeze_square_2}"
         },
 
         "triangle_sides_by_two_angles": {
-            "formula": "{&formula.side_by_two_angles}",
-            "gamma": "{&formula.gamma}"
+            "formula": "{&side_by_two_angles}",
+            "gamma": "{&gamma}"
         },
 
         "triangle_point": {
@@ -560,28 +319,28 @@
 
     "cube": {
         "square": {
-            "formula": "{&formula.cube_square}"
+            "formula": "{&cube_square}"
         },
 
         "volume": {
-            "formula": "{&formula.cube_volume}"
+            "formula": "{&cube_volume}"
         },
 
         "incircle": {
-            "formula": "{&formula.cube_incircle}"
+            "formula": "{&cube_incircle}"
         },
 
         "circumcircle": {
-            "formula": "{&formula.cube_circumcircle}"
+            "formula": "{&cube_circumcircle}"
         },
 
         "circle": {
-            "formula": "{&formula.cube_circle}"
+            "formula": "{&cube_circle}"
         }
     },
 
     "circle": {
-        "deg_convert": "{&formula.deg_to_rad}",
+        "deg_convert": "{&deg_to_rad}",
 
         "choises": [
             "Радиусами",
@@ -589,61 +348,61 @@
         ],
 
         "circle_square": {
-            "formula": "{&formula.nsquare_circle}"
+            "formula": "{&nsquare_circle}"
         },
 
         "circle_length": {
-            "formula": "{&formula.circle_length}"
+            "formula": "{&circle_length}"
         },
 
         "circle_sector": {
-            "formula": "{&formula.circle_sector}"
+            "formula": "{&circle_sector}"
         },
 
         "circle_segment": {
-            "formula": "{&formula.circle_segment}",
-            "segment_length": "{&formula.segment_length}",
-            "segment_chord": "{&formula.circle_chord}",
-            "segment_height": "{&formula.segment_height}"
+            "formula": "{&circle_segment}",
+            "segment_length": "{&segment_length}",
+            "segment_chord": "{&circle_chord}",
+            "segment_height": "{&segment_height}"
         },
 
         "circle_chord": {
-            "formula": "{&formula.circle_chord}"
+            "formula": "{&circle_chord}"
         },
 
         "circle_radius": {
-            "formula": "{&formula.circle_radius}"
+            "formula": "{&circle_radius}"
         },
 
         "circle_division": {
-            "angle": "{&formula.circle_division_angle}",
-            "arc": "{&formula.segment_length}",
-            "chord": "{&formula.circle_chord}"
+            "angle": "{&circle_division_angle}",
+            "arc": "{&segment_length}",
+            "chord": "{&circle_chord}"
         },
 
         "circle_part_square": {
-            "formula": "{&formula.circle_part_square}",
-            "radius": "{&formula.circle_part_radius}",
-            "deg": "{&formula.circle_part_deg}"
+            "formula": "{&circle_part_square}",
+            "radius": "{&circle_part_radius}",
+            "deg": "{&circle_part_deg}"
         }
     },
 
     "sphere": {
         "sphere_segment": {
-            "volume": "{&formula.sphere_segment_volume}",
-            "lateral_square": "{&formula.sphere_segment_lateral_square}",
-            "base_square": "{&formula.sphere_segment_base_square}"
+            "volume": "{&sphere_segment_volume}",
+            "lateral_square": "{&sphere_segment_lateral_square}",
+            "base_square": "{&sphere_segment_base_square}"
         },
 
         "sphere_sector": {
-            "volume": "{&formula.sphere_sector_volume}",
-            "lateral_square": "{&formula.sphere_segment_lateral_square}",
-            "cone_square": "{&formula.sphere_segment_cone_square}",
-            "sector_square": "{&formula.sphere_sector_square}"
+            "volume": "{&sphere_sector_volume}",
+            "lateral_square": "{&sphere_segment_lateral_square}",
+            "cone_square": "{&sphere_segment_cone_square}",
+            "sector_square": "{&sphere_sector_square}"
         },
 
         "sphere_radius": {
-            "formula": "{&formula.sphere_radius}"
+            "formula": "{&sphere_radius}"
         }
     },
 
@@ -656,14 +415,14 @@
         
         "desc": [
             {
-                "formula": "{&formula.rhombus_square1}"
+                "formula": "{&rhombus_square1}"
             },
             {
-                "formula": "{&formula.rhombus_square2}",
+                "formula": "{&rhombus_square2}",
                 "sin": "sin({}<sup>&deg;</sup>) = {?sin}"
             },
             {
-                "formula": "{&formula.rhombus_square3}"
+                "formula": "{&rhombus_square3}"
             }
         ]
     },
@@ -677,12 +436,12 @@
         ],
 
         "rectangle_square": {
-            "formula": "{&formula.rectangle_square}"
+            "formula": "{&rectangle_square}"
         },
 
         "rectangle_square_by_p": {
             "side": "{} = {}",
-            "formula": "{&formula.rectangle_square}"
+            "formula": "{&rectangle_square}"
         }
     },
 
@@ -693,52 +452,52 @@
         ],
 
         "square": [
-            "{&formula.trapeze_square}",
-            "{&formula.trapeze_square_2}"
+            "{&trapeze_square}",
+            "{&trapeze_square_2}"
         ]
     },
 
     "ellipsoid": {
-        "volume": "{&formula.ellipsoid_volume}",
-        "square": "{&formula.ellipsoid_square}",
-        "square_p": "{&formula.ellipsoid_square_p}"
+        "volume": "{&ellipsoid_volume}",
+        "square": "{&ellipsoid_square}",
+        "square_p": "{&ellipsoid_square_p}"
     },
 
     "cylinder": {
-        "volume": "{&formula.cylinder_volume}",
-        "square": "{&formula.cylinder_square}",
-        "square_side": "{&formula.sphere_segment_lateral_square}",
-        "square_res": "{&formula.cylinder_square_res}"
+        "volume": "{&cylinder_volume}",
+        "square": "{&cylinder_square}",
+        "square_side": "{&sphere_segment_lateral_square}",
+        "square_res": "{&cylinder_square_res}"
     },
 
     "cone": {
         "cone": {
-            "volume": "{&formula.cone_volume}",
-            "square_lat": "{&formula.cone_square_lat}",
-            "square": "{&formula.cone_square}"
+            "volume": "{&cone_volume}",
+            "square_lat": "{&cone_square_lat}",
+            "square": "{&cone_square}"
         },
 
         "conoid": {
-            "volume": "{&formula.conoid_volume}",
-            "square_lat": "{&formula.conoid_square_lat}",
-            "square": "{&formula.conoid_square}"
+            "volume": "{&conoid_volume}",
+            "square_lat": "{&conoid_square_lat}",
+            "square": "{&conoid_square}"
         }
     },
 
     "polygon": {
 
         "polygon_circle": {
-            "incircle_radius": "{&formula.incircle_radius}",
-            "circumcircle_radius": "{&formula.circumcircle_radius}",
+            "incircle_radius": "{&incircle_radius}",
+            "circumcircle_radius": "{&circumcircle_radius}",
             "angle": "&angle; <strong>{}<sup>&deg;</sup></strong>",
-            "nsquare": "{&formula.nsquare}",
-            "nsquare_circle": "{&formula.nsquare_circle}",
-            "nsquare_ratio": "{&formula.nsquare_ratio}"
+            "nsquare": "{&nsquare}",
+            "nsquare_circle": "{&nsquare_circle}",
+            "nsquare_ratio": "{&nsquare_ratio}"
         },
 
         "polygon_desc": {
-            "polygon_side_q": "{&formula.polygon_side_q}",
-            "polygon_side": "{&formula.polygon_side}",
+            "polygon_side_q": "{&polygon_side_q}",
+            "polygon_side": "{&polygon_side}",
             "condition_r": "n ≈ {} => r = {}",
             "error": "r > R"
         },
@@ -767,39 +526,9 @@
         }
     },
 
-    "a_progression": {
-        "formulas": [
-            {
-                "member": "{&formula.a_progression_member}",
-                "formula": "{&formula.a_progression}"
-            },
-            {
-                "n": "n", 
-                "d": "d",
-                "a1": "a<sub>1</sub>", 
-                "an": "a<sub>n</sub>"
-            }
-        ]
-    },
-
-    "g_progression": {
-        "formulas": [
-            {
-                "member": "{&formula.g_progression_member}",
-                "formula": "{&formula.g_progression}"
-            },
-            {
-                "n": "n", 
-                "q": "q",
-                "a1": "a<sub>1</sub>", 
-                "an": "a<sub>n</sub>"
-            }
-        ]
-    },
-
     "quadrangle_square": {
         "formulas": {
-            "formula": "{&formula.quadrangle_square}",
+            "formula": "{&quadrangle_square}",
             "sin": "sin({}<sup>&deg;</sup>) = {?sin}"
         }
     },
@@ -847,13 +576,6 @@
         }
     },
 
-    "arithmetic_binary": {
-        "formula": "Двоичное выражение",
-
-        "result_binary": "Результат вычисления (двоичный): <b>{}</b>",
-        "result_decimal": "Результат вычисления (десятичный): <b>{}</b>"
-    },
-
     "numbers_relation": {
         "number": "Число {}",
 
@@ -879,18 +601,18 @@
     },
 
     "stirling": {
-        "formula": "{&formula.stirling}",
-        "condition": "{&formula.stirling_condition}",
+        "formula": "{&stirling}",
+        "condition": "{&stirling_condition}",
         "factorial": "n! = {}",
         "borders": "{} < n! < {}"
     },
 
     "lines_on_plane": {
-        "formula": "{&formula.lines}",
+        "formula": "{&lines}",
         "parallel_text": "признак параллельности:",
-        "parallel": "{&formula.parallel}",
+        "parallel": "{&parallel}",
         "perpendicular_text": "признак перпендикулярности",
-        "perpendicular": "{&formula.perpendicular}",
+        "perpendicular": "{&perpendicular}",
         "parallel_result": "Прямые параллельны",
         "perpendicular_result": "Прямые перпендикулярны",
         "negative": "Прямые не параллельны и не перпендикулярны"
@@ -901,40 +623,14 @@
         "condition": "0 <= {} < 10"
     },
 
-    "factorial": {
-        "formulas": [
-            {
-                "formula": "{&formula.factorial_main}"
-            },
-            {
-                "n": "n"
-            }
-        ]
-    },
-
     "sqrt_pow": {
         "result_sqrt": "Корень: {}",
         "result_pow": "Степень: {}"
     },
 
-    "log": {
-        "formulas": [
-            {
-                "formula": "{&formula.log}",
-                "condition": "{&formula.log_condition}",
-                "power": "{&formula.power}"
-            },
-            {
-                "a": "a",
-                "n": "n",
-                "b": "b"
-            }
-        ]
-    },
-
     "sequence_generator": {
         "errors": {
-            "quantity": "Количество выпаданий больше диапозона",
+            "quantity": "Количество выпадений больше диапазона",
             "numbers": "Начальное число должно быть меньше конечного"
         }
     },
@@ -973,21 +669,6 @@
             "result": "Суммарный объем {} м<sup>3</sup>",
             "plus": "Объем добавленных элементов {} м<sup>3</sup>",
             "minus": "Объем вычтенных элементов {} м<sup>3</sup>"
-        }
-    },
-
-    "matrix": {
-
-        "determinant": {
-            "result": "{}"
-        },
-
-        "transposition": {
-            
-        },
-
-        "determinant_third_order": {
-
         }
     }
 }

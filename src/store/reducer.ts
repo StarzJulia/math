@@ -11,6 +11,11 @@ export const reducer = (state: GlobalStateInterface, action: {type: string, data
                 ...state,
                 type: action.data
             }
+        case 'SET_NAME':
+            return {
+                ...state,
+                name: action.data
+            }
         case 'SET_ERROR':
             return {
                 ...state,
@@ -19,8 +24,12 @@ export const reducer = (state: GlobalStateInterface, action: {type: string, data
         case 'SET_VOCABULARY':
             return {
                 ...state,
-                vocabulary: action.data.vocabulary,
-                formulas: action.data.formulas
+                vocabulary: action.data
+            };
+        case 'SET_FORMULAS':
+            return {
+                ...state,
+                formulas: action.data
             };
         case 'SET_LABELS':
             return {

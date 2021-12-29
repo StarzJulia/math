@@ -1,6 +1,7 @@
 export interface CalcProps {
     lang: string;
     calcType: string;
+    calcName: string;
 }
 
 export interface Label {
@@ -26,31 +27,44 @@ export interface Field {
     exceptions?: string[] | number[];
     cols?: number;
     rows?: number;
+    squared?: boolean;
 }
 
 export interface Fields {
     fields: Field[];
 }
 
-interface onChangeFunc {
-    (e: React.ChangeEvent<HTMLInputElement>, id: string): null;
+export interface onChangeFunc {
+    (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>, id: string, col?: number, row?: number): void;
 }
 
 export interface FormFieldProps {
     field: Field;
-	key: number;
-	label: string;
+	label?: string;
     value?: string | number | undefined;
     fieldChanged: onChangeFunc;
+    col?: number;
+    row?: number;
+}
+
+export interface GlobalStateMatrixValueInterface {
+    cols: number;
+    rows: number;
+    squared: boolean;
+    values: [][]
 }
 
 export interface GlobalStateInterface {
     lang: string;
     type: string;
-    vocabulary: {[key: string]: [] | {} | string};
-    formulas: {[key: string]: any};
+    name: string;
+    vocabulary: {
+        //btn: {[key: string]: string};
+        //labels: {[key: string]: string};
+        [key: string]: [] | {} | string;
+    };
+    formulas: [];
     fields: [];
-    labels: {[key: string]: string};
     startCalculationFlag: boolean;
-    values: {[key: string]: string};
+    values: {[key: string]: string | GlobalStateMatrixValueInterface};
 }

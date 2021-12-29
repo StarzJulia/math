@@ -5,7 +5,7 @@ export default function CalculatorResult() {
 	const {state} = useContext(Context);
 	
 	const CalcComponent = React.lazy(() =>
-		import(`./calculators/${state.type}.tsx`)
+		import(`./calculators/${state.type}/${state.name}.tsx`)
 	);
 
 	return (
