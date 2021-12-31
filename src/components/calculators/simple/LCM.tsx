@@ -12,6 +12,7 @@ export default function LCM() {
 		const num1 = parseFloat(values['num1']);
 		const num2 = parseFloat(values['num2']);
 		
+		
 		return {
 			"a": num1,
 			"b": num2,
