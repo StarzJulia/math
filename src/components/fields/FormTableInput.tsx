@@ -1,18 +1,18 @@
 import {FormFieldProps} from '../../interfaces/interfaces';
 import React from 'react';
 
-export default function FormTableInput({field, value, col, row, fieldChanged}: FormFieldProps) {
+export default function FormTableInput({field, value, col, row, isWrong, fieldChanged}: FormFieldProps) {
 	
 	return (
 		<div className="input-container">
 			<input 
 				type={field.type || 'text'}
 				value={value}
-				id={field.id || field.name} 
+				id={`${field.name}-${row}-${col}`} 
 				name={field.name}
-				//className={valid ? '' : 'error'}
+				className={isWrong ? 'error' : ''}
 				inputMode={field.inputmode || 'decimal'}
-				onChange={(e) => fieldChanged(e, field.id || field.name, col, row)}
+				onChange={(e) => fieldChanged(e, field.name, col, row)}
 			/>
 		</div>
 	);

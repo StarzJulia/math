@@ -10,8 +10,21 @@ export default function Factorial() {
 
 	const makeCalculation = () => {
 		const n = parseFloat(values['number']);
+		let list: string[] = [];
+		if (n > 0) {
+			list.push('= 1');
+			if (n >= 3) {
+				list.push('2');
+				if (n > 3) {
+					list.push('...');
+				}
+			}
+			if (n > 1) {
+				list.push(`${n}`);
+			}
+		}
 
-        return {n, 'formularesult': factorialF(n)};
+        return {n, l: list.join(' * '), 'formularesult': [factorialF(n)]};
 	}
 
 	return (

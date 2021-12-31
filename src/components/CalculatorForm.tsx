@@ -8,7 +8,7 @@ import FormButtonsContainer from './fields/FormButtonsContainer';
 
 export default function CalculatorForm() {
 	const {state, dispatch} = useContext(Context);
-	const [error, setError] = useState(false);
+	const [errors, setErrors] = useState([]);
 	const [values, setValues] = useState(() => {
         var search = location.search.replace('?', '').split('&').reduce<string | {}>((defaults: [], item: string) => {
 			const [name, val] = item.split('=');
@@ -55,10 +55,8 @@ export default function CalculatorForm() {
 		}, {});
     });
 
-	console.log(state);
-
 	useEffect(() => {
-		if(validate()) {
+		if(validate(true)) {
 			showResult();
 		}
 	}, [values]);
@@ -80,53 +78,64 @@ export default function CalculatorForm() {
 		return v !== "";
 	}
 
-	const validate = () => {
+	const validate = (silent: boolean) => {
+		let errors: [] = [];
 		const valid = state.fields.reduce((isValid: boolean, field: Field): boolean => {
-			const v = values[field.id || field.name];
+			const id = field.id || field.name;
+			const v = values[id];
 			if (field.type == 'matrix' && v.rows && v.cols) {
 				for (let i = 0; i < v.rows; i++) {
 					for (let j = 0; j < v.cols; j++) {
-						isValid = isValid && validateNumber(field, v.values[i][j]);
+						const isValidField = validateNumber(field, v.values[i][j]);
+						if (!isValidField) 
+							errors.push([id, i, j]);
+						isValid = isValid && isValidField;
 					}
 				}
 			} else if (field.notRequired && v === "") {
 				isValid = isValid && true;
 			} else if (field.type == 'select' || field.inputType == 'string') {
-				isValid = isValid && validateString(v);
+				const isValidField = validateString(v);
+				if (!isValidField) 
+					errors.push(id);
+				isValid = isValid && isValidField;
 			} else {
-				isValid = isValid && validateNumber(field, v);
+				const isValidField = validateNumber(field, v);
+				if (!isValidField) 
+					errors.push(id);
+				isValid = isValid && isValidField;
 			}
 			
 			return isValid;
 		}, true);
 		
-		setError(!valid);
+		setErrors(silent ? [] : errors);
+		dispatch({type: 'SET_CALCULATION_FLAG', data: !errors.length});
+
 		return valid;
 	}
 
-	const showResult = () => {
-		dispatch({type: 'SET_CALCULATION_FLAG', data: !error});
-
-		if (error) {
-			return;
+	const hasError = (id: string) => {
+		for (let e of errors) {
+			if (e == id)
+				return true;
 		}
+		return false;
+	}
 
+	const showResult = () => {
 		dispatch({type: 'SET_FORM_VALUES', data: values});
 	}
 
 	const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-		showResult();
+
+		if(validate(false)) {
+			showResult();
+		}
 	}
 
-	const changeData = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>, id: string) => {
-		const newValues = { ...values };
-		newValues[id] = e.target.value;
-
-		setValues(newValues);
-	}
-
-	const changeTableData = (value: {}, id: string) => {
+	const changeData = (value: {} | string, id: string) => {
 		const newValues = { ...values };
 		newValues[id] = value;
 
@@ -138,27 +147,32 @@ export default function CalculatorForm() {
 		<form id="calc_form" onSubmit={onSubmit}>
 			<div id="calc_form-content">
 				{state.fields.map((field: Field, key: number) => {
+					const id = field.id || field.name;
+					const data = values[id];
 					switch(field.type) {
 						case 'matrix':
-							return <>
+							return <div key={key} >
 								<FormTable
-									field={field} 
-									rows={3}
-									cols={3}
-									key={key} 
-									options={values[field.id || field.name]}
-									fieldChanged={changeTableData}
+									field={field}
+									options={data}
+									errors={errors}
+									fieldChanged={changeData}
 								/>
-								<FormButtonsContainer 
-									field={field} 
-									options={values[field.id || field.name]}
-								/>
-							</>;
+								{
+									field.buttons &&
+									<FormButtonsContainer 
+										field={field} 
+										options={data}
+										fieldChanged={changeData}
+									/>
+								}
+							</div>;
 						case 'select':
 							return <FormSelect 
 										field={field} 
 										label={buildLabel(field.name, field.values || [])} 
 										key={key}  
+										isWrong={hasError(id)}
 										fieldChanged={changeData}
 									/>
 						default:
@@ -166,7 +180,8 @@ export default function CalculatorForm() {
 										field={field} 
 										label={buildLabel(field.name, field.values || [])} 
 										key={key} 
-										value={values[field.id || field.name]}
+										value={data}
+										isWrong={hasError(id)}
 										fieldChanged={changeData}
 									/>
 					}

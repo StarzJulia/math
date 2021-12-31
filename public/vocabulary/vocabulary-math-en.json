@@ -143,7 +143,8 @@
                 "formula": ["{&factorial_main}"]
             },
             {
-                "n": "n"
+                "n": "n",
+                "l": "= 1 * 2 * ... * n"
             }
         ]
     },
@@ -169,6 +170,32 @@
                 "det": ["{&matrix_det}", true]
             },
             {}
+        ]
+    },
+
+    "GCD": {
+        "formulas": [
+            {
+                "gcd": ["{&gcd}", true]
+            },
+            {
+                "gcd": "gcd",
+                "a": "a",
+                "b": "b"
+            }
+        ]
+    },
+
+    "LCM": {
+        "formulas": [
+            {
+                "lcm": ["{&lcm}", true]
+            },
+            {
+                "lcm": "lcm",
+                "a": "a",
+                "b": "b"
+            }
         ]
     }
 }

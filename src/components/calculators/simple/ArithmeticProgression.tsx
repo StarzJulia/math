@@ -24,8 +24,8 @@ export default function ArithmeticProgression() {
 		return {
 			n, d, a1, an, 
 			l: members.join(', '),
-			'formularesult': roundNum(s), 
-			'n_memberresult': roundNum(an)
+			'formularesult': [roundNum(s)], 
+			'n_memberresult': [roundNum(an)]
 		};
 	}
 

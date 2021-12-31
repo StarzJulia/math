@@ -9,10 +9,10 @@ interface FormulaProps {
 export default function CalculatorFormula({denotation}: FormulaProps) {
   const {state} = useContext(Context);
   const calculator = state.vocabulary[state.name];
-  const calc_formulas = calculator.formulas[0];
+  const [calc_formulas, example] = calculator.formulas;
   const isExample = !denotation;
-  const variables = isExample ?  calculator.formulas[1] : denotation;
-  const formulas = {};
+  const variables = isExample ? example : {...example, ...denotation};
+  const formulas: {} = {};
 
   for (let f in calc_formulas) {
     if (isExample && calc_formulas[f][1]) {
@@ -20,12 +20,10 @@ export default function CalculatorFormula({denotation}: FormulaProps) {
     }
     formulas[f] = calc_formulas[f][0];
   }
-  console.log(formulas)
 
   const getFormula = (name: string): [] => {
     const formula_path = formulas[name].replace(/{|&|}/gi, '').split('.');
     let pattern = state.formulas;
-
 
     for (const part of formula_path) {
       pattern = pattern[part];

@@ -17,7 +17,7 @@ export default function MatrixDeterminant() {
 		const m_field = values['matrix'];
 		const d = calcDeterminant(m_field.values);
 
-		return {"detresult": d};
+		return {"detresult": [d]};
 	}
 
 	return (

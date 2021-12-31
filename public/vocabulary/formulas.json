@@ -312,7 +312,9 @@
     "rad13": [["1", "&radic;3"]],
     "rad23": [["2", "&radic;3"]],
 
-    "factorial_main": ["{n}! = 1 * 2 * ... * {n}"],
+    "factorial_main": ["{n}! {l}"],
+    "gcd": ["{gcd}({a}, {b})"],
+    "lcm": ["{lcm}({a}, {b})"],
 
     "el_inversed": ["{a}<sup>-1</sup>"],
     "modular_inverse": ["{a} * {b} ≡ 1 (mod {m})"],

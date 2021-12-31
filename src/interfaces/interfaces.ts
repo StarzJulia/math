@@ -28,6 +28,7 @@ export interface Field {
     cols?: number;
     rows?: number;
     squared?: boolean;
+    buttons?: string[]
 }
 
 export interface Fields {
@@ -35,7 +36,7 @@ export interface Fields {
 }
 
 export interface onChangeFunc {
-    (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>, id: string, col?: number, row?: number): void;
+    (value: string, id: string, col?: number, row?: number): void;
 }
 
 export interface FormFieldProps {
@@ -45,6 +46,7 @@ export interface FormFieldProps {
     fieldChanged: onChangeFunc;
     col?: number;
     row?: number;
+    isWrong?: boolean;
 }
 
 export interface GlobalStateMatrixValueInterface {

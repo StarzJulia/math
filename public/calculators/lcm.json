@@ -2,14 +2,14 @@
     {
         "name": "number",
         "id": "num1",
-        "values": ["1"],
+        "values": ["a"],
         "inputmode": "numeric",
         "min": 1
     },
     {
         "name": "number",
         "id": "num2",
-        "values": ["2"],
+        "values": ["b"],
         "inputmode": "numeric",
         "min": 1
     }

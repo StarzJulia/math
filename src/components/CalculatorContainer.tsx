@@ -10,7 +10,7 @@ export default function CalculatorContainer({calcName, calcType, lang} : CalcPro
 	const [isVocabularyReady, setVocabularyFlag] = useState(false);
 	const [isFormulasReady, setFormulasFlag] = useState(false);
 	const [isFieldsReady, setFieldsFlag] = useState(false);
-	const [calcFormulas, setCalcFormulas] = useState([]);
+	const [calcFormulas, setCalcFormulas] = useState(false);
 
 	useEffect(() => {
 		dispatch({type: 'SET_TYPE', data: calcType});
@@ -27,10 +27,18 @@ export default function CalculatorContainer({calcName, calcType, lang} : CalcPro
 				return response.json();
 			})
 			.then((result) => {
-				const formulas = result[calcName] ? (result[calcName].formulas ? result[calcName].formulas : []) : [];
+				const calc = result[calcName];
+				let formulas = calc ? (calc.formulas ? calc.formulas[0] : []) : [];
+
 				dispatch({type: 'SET_VOCABULARY', data: result});
 				setVocabularyFlag(true);
-				setCalcFormulas(formulas);
+
+				for (let f in formulas) {
+					if (!formulas[f][1]) {
+						setCalcFormulas(true)
+					  	break;
+					}
+				  }
 			})
 			.catch((error) => {
 				dispatch({type: 'SET_ERROR', data: {error: error}});
@@ -67,7 +75,7 @@ export default function CalculatorContainer({calcName, calcType, lang} : CalcPro
 
 	return (
 		<>
-			{isFormulasReady && isVocabularyReady && calcFormulas.length > 0 &&
+			{isFormulasReady && isVocabularyReady && calcFormulas &&
 				<div className="formula-result">
 					<CalculatorFormula />
 				</div>

@@ -7,23 +7,30 @@ interface FormTableRowProps {
 	row: number;
 	cols: number;
 	values: [];
+	errors: [];
     fieldChanged: onChangeFunc;
 }
 
-export default function FormTableRow({row, cols, values, fieldChanged}: FormTableRowProps) {
-	
+export default function FormTableRow({field, row, cols, values, errors, fieldChanged}: FormTableRowProps) {
+	const isWrongField = (name: string, i: number, j: number) => {
+		for (let e of errors) {
+			if (e[0] == name && e[1] == i && e[2] == j)
+				return true;
+		}
+		return false;
+	}
+
 	return (
 		<tr>
 			{Array(cols).fill(1).map((_el, i) => {
-				let field = {
-					name: 'num'
-				};
+				const name = field.id || field.name;
 				return <td key={i}>
 					<FormTableInput 
-						field={field}
+						field={{name}}
 						value={values[i]}
 						col={i}
 						row={row}
+						isWrong={isWrongField(name, row, i)}
 						fieldChanged={fieldChanged} 
 					/>
 				</td>

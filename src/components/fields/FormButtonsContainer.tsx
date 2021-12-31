@@ -14,25 +14,65 @@ interface FormTableProps {
 }
 
 export default function FormButtonsContainer({field, options, fieldChanged}: FormTableProps) {
-	
+	let data = options;
 
-	console.log(field);
+	const addColumn = () => {
+		data.cols += 1;
+		data.values.map((row: []) => row.push(''));
+	}
 
-	const changeData = (e: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>, id: string, col: number, row: number) => {
-		options.values[row][col] = e.target.value;
+	const addRow = () => {
+		data.rows += 1;
+		data.values.push(new Array(data.cols).fill(''));
+	}
 
-		fieldChanged(options, id);
+	const removeColumn = () => {
+		data.cols -= 1;
+		data.values.map((row: []) => row.pop());
+	}
+
+	const removeRow = () => {
+		data.rows -= 1;
+		data.values.pop();
+		
+	}
+	const changeData = (id: string) => {
+		switch(id) {
+			case 'removeCol':
+				if (options.squared)
+					removeRow();
+				removeColumn();
+				break;
+			case 'removeRow':
+			case 'remove':
+				removeRow();
+				if (options.squared)
+					removeColumn();
+				break;
+			case 'addCol':
+				if (options.squared)
+					addRow();
+				addColumn();
+				break;
+			case 'addRow':
+			case 'add':
+				addRow();
+				if (options.squared)
+					addColumn();
+				break;
+		}
+
+		fieldChanged(data, field.id || field.name);
 	}
 
 	return (
 		<div className="calc_form-table-btn">
-			{field.buttons.map((button, i) => {
+			{field.buttons && field.buttons.map((button, i) => {
 				return <FormButton 
 					key={i}
 					id={button}
-					field={field}
 					options={options}
-					//onClick={}
+					change={changeData}
 				/>
 			})}
 		</div>
